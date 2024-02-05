@@ -6,7 +6,7 @@ import Button from './Button';
 
 Survey.StylesManager.applyTheme("default");
 
-const CustomButtonWidget2: React.FC = () => {
+const CustomButtonElement: React.FC = () => {
   useEffect(() => {
     // Custom widget logic here, if needed
   }, []);
@@ -43,4 +43,4 @@ const CustomButtonWidget2: React.FC = () => {
   return <Survey.Survey model={survey} />;
 };
 
-export default CustomButtonWidget2;
+export default CustomButtonElement;

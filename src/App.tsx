@@ -1,10 +1,8 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Button from './Button'
-import CustomButtonWidget1 from './CustomButtonWidget1'
-import CustomButtonWidget2 from './CustomButtonWidget2'
+import CustomButtonWidget from './CustomButtonWidget'
+import CustomButtonElement from './CustomButtonElement'
 
 function App() {
   const [count, setCount] = useState(0);
@@ -15,8 +13,8 @@ function App() {
   return (
     <>
        <Button label={`Click ${count} times`} onClick={handleClick}/>
-       <CustomButtonWidget1/>
-       <CustomButtonWidget2/>
+       <CustomButtonWidget/>
+       <CustomButtonElement/>
     </>
   )
 }

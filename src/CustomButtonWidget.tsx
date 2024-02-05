@@ -16,7 +16,7 @@ interface CustomWidget {
   afterRender: (question: Survey.Question, el: HTMLElement) => void;
 }
 
-const CustomButtonWidget1: React.FC = () => {
+const CustomButtonWidget: React.FC = () => {
   useEffect(() => {
     const widget: CustomWidget = {
       name: "customButton",
@@ -60,4 +60,4 @@ const CustomButtonWidget1: React.FC = () => {
   );
 };
 
-export default CustomButtonWidget1;
+export default CustomButtonWidget;

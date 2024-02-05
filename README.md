@@ -1,30 +1,52 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project explores the integration of third-party components with SurveyJS in a React application, focusing on incorporating custom button components within SurveyJS surveys. We aim to demonstrate the use of these components in various contexts, including as standalone React components, as widgets within SurveyJS, and as elements registered and rendered directly by SurveyJS.
 
-Currently, two official plugins are available:
+## Project Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+src/App.js 
+```jsx
+// Import statements...
 
-## Expanding the ESLint configuration
+function App() {
+  // State and handler definitions...
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+  return (
+    <div>
+      {/* Original button rendered directly in React */}
+      <Button label={`Click ${count} times`} onClick={handleClick} />
 
-- Configure the top-level `parserOptions` property like this:
+      {/* Custom button rendered as a widget inside SurveyJS */}
+      <CustomButtonWidget />
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
+      {/* Custom button rendered as a registered element inside SurveyJS */}
+      <CustomButtonElement />
+    </div>
+  );
 }
 ```
+### CustomButtonElement.  
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+This is working example in the project.    
+
+### why tailwind styles are overwrite by survey.js lib.   
+
+Because survey.js use tag selector to apply styles to any component that include html elements.    
+
+### Handling Style Conflicts
+
+Issue: The SurveyJS library uses tag selectors to apply styles, which can inadvertently override the styles of included custom components, such as Tailwind CSS classes applied to our custom buttons.
+
+But this is not a recomended way to do it. bacause here we can't use servey.js auto generated features.   
+
+```jsx
+// Avoid importing the default SurveyJS styles
+// import 'survey-react/survey.css';
+
+```
+
+However, removing the SurveyJS stylesheet is not recommended because it also removes the library's built-in styling for surveys, which could affect the appearance and functionality of auto-generated survey elements.
+
+### Further Tasks
+
+To fully integrate third-party components within SurveyJS, it may be necessary to dynamically re-apply component props and manage re-rendering within the context of a SurveyJS survey. This ensures that custom components remain interactive and stylistically consistent when used as part of a survey.
